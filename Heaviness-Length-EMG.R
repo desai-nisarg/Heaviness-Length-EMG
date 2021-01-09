@@ -3,6 +3,7 @@
 # Manuscript authors: Madhur Mangalam, Nisarg Desai, and Damian G. Kelty-Stephen
 # Code author: Nisarg Desai, desai054[at]umn[dot]edu
 # Last update: March 21, 2020
+# Status: Manuscript submitted for peer-review
 
 rm(list=ls())
 
@@ -13,10 +14,13 @@ library(emmeans)    #emmeans
 library(DescTools)  #EtaSq
 setwd("...to the directory containing Data.csv...")
 DATA <- read.csv("Data.csv", TRUE, ",",na.strings=" ")
+DATA$Wrist_Angle <- as.factor(DATA$Wrist_Angle)
 DATA$Wrist_Angle <- relevel(DATA$Wrist_Angle, ref = "Neutral")
 DATA$Exploratory_Kinematics <- as.factor(DATA$Exploratory_Kinematics)
 DATA$Trial_Order <-as.factor((DATA$Trial_Order))
 DATA$Torque <-ordered(DATA$Torque)
+DATA$Object <- as.factor(DATA$Object)
+DATA$Participant <- as.factor(DATA$Participant)
 
 # Let's first check the distributions of the dependent variables
 
@@ -242,7 +246,20 @@ LP005<-lmer(Lperceived ~ sMass + sTorque + (1|Participant), data = modsel, REML 
 LP006<-lmer(Lperceived ~ sMass + sI + (1|Participant), data = modsel, REML = F)
 LP007<-lmer(Lperceived ~ sTorque + sI + (1|Participant), data = modsel, REML = F)
 LP008<-lmer(Lperceived ~ sMass + sTorque + sI + (1|Participant), data = modsel, REML = F, na.action = "na.fail")
-summary.lm(LP008)
+summary(LP008)
+
+# Unscaled models # Skip next 9 lines if you want to use scaled
+LP001<-lmer(Lperceived ~ (1|Participant), data = modsel, REML = F)
+LP002<-lmer(Lperceived ~ Mass + (1|Participant), data = modsel, REML = F)
+LP003<-lmer(Lperceived ~ Torque + (1|Participant), data = modsel, REML = F)
+LP004<-lmer(Lperceived ~ LogI1 + (1|Participant), data = modsel, REML = F)
+LP005<-lmer(Lperceived ~ Mass + Torque + (1|Participant), data = modsel, REML = F)
+LP006<-lmer(Lperceived ~ Mass + LogI1 + (1|Participant), data = modsel, REML = F)
+LP007<-lmer(Lperceived ~ Torque + LogI1 + (1|Participant), data = modsel, REML = F)
+LP008<-lmer(Lperceived ~ Mass + Torque + LogI1 + (1|Participant), data = modsel, REML = F, na.action = "na.fail")
+summary(LP008)
+
+
 
 # Calculate the dispersion parameter
 chat_lp <- deviance(LP008) / df.residual(LP008)
@@ -267,6 +284,17 @@ HP005<-lmer(Hperceived ~ sMass + sTorque + (1|Participant), data = modsel, REML 
 HP006<-lmer(Hperceived ~ sMass + sI + (1|Participant), data = modsel, REML = F)
 HP007<-lmer(Hperceived ~ sTorque + sI + (1|Participant), data = modsel, REML = F)
 HP008<-lmer(Hperceived ~ sMass + sTorque + sI + (1|Participant), data = modsel, REML = F, na.action = "na.fail")
+
+# Unscaled models # Skip next 9 lines if you want to use scaled
+HP001<-lmer(Hperceived ~ (1|Participant), data = modsel, REML = F)
+HP002<-lmer(Hperceived ~ Mass + (1|Participant), data = modsel, REML = F)
+HP003<-lmer(Hperceived ~ Torque + (1|Participant), data = modsel, REML = F)
+HP004<-lmer(Hperceived ~ LogI1 + (1|Participant), data = modsel, REML = F)
+HP005<-lmer(Hperceived ~ Mass + Torque + (1|Participant), data = modsel, REML = F)
+HP006<-lmer(Hperceived ~ Mass + LogI1 + (1|Participant), data = modsel, REML = F)
+HP007<-lmer(Hperceived ~ Torque + LogI1 + (1|Participant), data = modsel, REML = F)
+HP008<-lmer(Hperceived ~ Mass + Torque + LogI1 + (1|Participant), data = modsel, REML = F, na.action = "na.fail")
+
 
 
 # Calculate the dispersion parameter
