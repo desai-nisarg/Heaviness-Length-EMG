@@ -1,9 +1,9 @@
 ####----INTRODUCTION----#####
 # Manuscript title: "Proprioceptive afferents differentially contribute to effortful perception of object heaviness and length"
 # Manuscript authors: Madhur Mangalam, Nisarg Desai, and Damian G. Kelty-Stephen
+# Publication: Experimental Brain Research (2021)
 # Code author: Nisarg Desai, desai054[at]umn[dot]edu
 # Last update: March 21, 2020
-# Status: Manuscript submitted for peer-review
 
 rm(list=ls())
 
