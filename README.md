@@ -1,6 +1,4 @@
-## INTRODUCTION
-
-Manuscript title: "Proprioceptive afferents differentially contribute to effortful perception of object heaviness and length"
+## Proprioceptive afferents differentially contribute to effortful perception of object heaviness and length
 
 Manuscript authors: Madhur Mangalam, Nisarg Desai, and Damian G. Kelty-Stephen
 
